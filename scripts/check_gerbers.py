@@ -1,10 +1,13 @@
-"""Fail unless the KiCad board's Gerbers and drill match the ones the working board was built from.
+"""Fail unless the KiCad board's Gerbers and drill match the ones the working board was built from, apart from
+the intended changes.
 
 Usage: check_gerbers.py <our gerber dir> <Flux Gerber zip> [png dir]
 
 Both sides are rasterized at 20 µm and XORed. Differences thinner than 2 pixels (40 µm, arc tessellation)
-are ignored. Silkscreen may differ only inside the windows listed in SILK_CHANGES. Drill holes are
-compared as sets. With a png dir, every layer that differs gets an image (red = only ours, blue = only Flux).
+are ignored. Silkscreen may also differ inside SILK_CHANGES, and every layer and hole inside REV11_CHANGES.
+Copper only fails where the built board has copper we don't: KiCad's pour fill adds slivers next to Flux's,
+and DRC checks those for clearance. Drill holes are compared as sets. With a png dir, every layer that
+differs gets an image (red = only ours, blue = only Flux).
 """
 import math
 import re
@@ -13,7 +16,7 @@ import zipfile
 import zlib
 from pathlib import Path
 
-from design import SILK_CHANGES
+from design import REV11_CHANGES, SILK_CHANGES
 
 RES = 0.02  # mm per pixel
 X0, Y0, N = -35.5, -35.5, 3550  # raster window: the 70 x 70 mm board plus a margin
@@ -167,9 +170,9 @@ def raster(shapes):
     return [int(r.translate(bits)[::-1], 2) for r in rows]  # bit i = pixel i
 
 
-def differences(a, b):
-    """Pixels that differ, eroded by one pixel so 1-pixel edge jitter does not count."""
-    x = [p ^ q for p, q in zip(a, b)]
+def differences(a, b, missing_only=False):
+    """Pixels that differ (or only b has), eroded by one pixel so 1-pixel edge jitter does not count."""
+    x = [q & ~p if missing_only else p ^ q for p, q in zip(a, b)]
     h = [v & (v << 1) & (v >> 1) for v in x]
     return [h[j] & h[j - 1] & h[j + 1] if 0 < j < N - 1 else 0 for j in range(N)]
 
@@ -233,8 +236,8 @@ def main(ours_dir, flux_zip, png_dir=None):
     for L in LAYERS:
         mine = (ours_dir / f"balancio-{L}.gbr").read_text()
         a, b = raster(parse(mine)), raster(parse(theirs[L]))
-        found = boxes(differences(a, b))
-        allowed = [w for name, w in SILK_CHANGES if name == L]
+        found = boxes(differences(a, b, missing_only=L.endswith("_Cu")))
+        allowed = [w for name, w in SILK_CHANGES if name == L] + REV11_CHANGES
         inside = lambda o: any(w[0] <= o[0] and o[2] <= w[2] and w[1] <= o[1] and o[3] <= w[3] for w in allowed)
         unexpected = [o for o in found if not inside(o)]
         bad += len(unexpected)
@@ -248,8 +251,9 @@ def main(ours_dir, flux_zip, png_dir=None):
     our_holes = set().union(*(drill(p.read_text()) for p in ours_dir.glob("*.drl")))
     near = lambda h, pool: any(abs(h[0] - q[0]) <= 0.011 and abs(h[1] - q[1]) <= 0.011 and abs(h[2] - q[2]) < 0.001
                                for q in pool)
-    holes_bad = [("only ours", h) for h in our_holes if not near(h, their_holes)] + \
-                [("only Flux", h) for h in their_holes if not near(h, our_holes)]
+    changed = lambda h: any(w[0] <= h[0] <= w[2] and w[1] <= h[1] <= w[3] for w in REV11_CHANGES)
+    holes_bad = [("only ours", h) for h in our_holes if not near(h, their_holes) and not changed(h)] + \
+                [("only Flux", h) for h in their_holes if not near(h, our_holes) and not changed(h)]
     print(f"{'Drill':13} {'OK' if not holes_bad else 'DIFFERS'} ({len(our_holes)} holes)")
     for side, h in holes_bad[:10]:
         print("   ", side, h)

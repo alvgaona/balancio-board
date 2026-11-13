@@ -235,7 +235,7 @@ class Sheet:
         sch = [Sym("kicad_sch"), [Sym("version"), 20231120], [Sym("generator"), "eeschema"],
                [Sym("generator_version"), "8.0"], [Sym("uuid"), ROOT_UUID], [Sym("paper"), "A3"],
                [Sym("title_block"), [Sym("title"), TITLE], [Sym("date"), date.today().isoformat()], [Sym("rev"), REV],
-                [Sym("comment"), 1, "Migrated from Flux (flux/project.json); netlist checked against it by scripts/build.sh"]],
+                [Sym("comment"), 1, "Rev 1.0 migrated from Flux (flux/project.json); Rev 1.1 changes in scripts/design.py; netlist checked by scripts/build.sh"]],
                [Sym("lib_symbols")] + list(self.symdefs.values())] + items + self.extra + \
               [[Sym("sheet_instances"), [Sym("path"), "/", [Sym("page"), "1"]]]]
         out = ROOT / "hw" / f"{PROJECT}.kicad_sch"
@@ -270,14 +270,44 @@ class Sheet:
 def power_block(s):
     j4 = s.place("J4", 30.48, 45.72, a=180, ref_at=(30.48, 39.37, None), val_at=(30.48, 52.07, None))
     s.text("2S Li-ion pack: 1 = B-, 2 = mid-cell, 3 = B+", 15.24, 58.42)
-    sw = s.place("SW1", 162.56, 40.64, mirror="y", ref_at=(160.02, 34.29, None), val_at=(162.56, 46.99, None))
-    s.w(j4["3"], sw["3"])  # VBAT rail
+    # Rev 1.1 soft-latch power switch (see design.py): Q3 high side, R10 holds it off, SW2 or Q4 turn it on
+    q3 = s.place("Q3", 160.02, 40.64, a=270, ref_at=(160.02, 46.99, None), val_at=(160.02, 49.53, None))
+    s.w(j4["3"], q3["1"])  # VBAT rail
     s.w((45.72, 43.18), (45.72, 40.64))
     s.power("VBAT", (45.72, 40.64))
     s.power("FLAG", (45.72, 40.64))
-    s.w(sw["2"], (175.26, 40.64))
-    s.power("VIN", (175.26, 40.64))
-    s.power("FLAG", (175.26, 40.64))
+    s.w(q3["5"], (190.5, 43.18))
+    s.power("VIN", (182.88, 43.18))
+    s.power("FLAG", (182.88, 43.18))
+    r10 = s.place("R10", 149.86, 31.75)
+    s.w(r10["2"], (149.86, 43.18))
+    s.w(r10["1"], (149.86, 22.86), (165.1, 22.86))  # gate line
+    s.w(q3["4"], (160.02, 22.86))
+    q4 = s.place("Q4", 167.64, 27.94, mirror="y", ref_at=(167.64, 31.75, "left"), val_at=(167.64, 34.29, "left"))
+    s.power("GND", q4["2"])
+    s.w(q4["1"], (185.42, 27.94))
+    s.label("PWR_HOLD", (185.42, 27.94))
+    r11 = s.place("R11", 177.8, 31.75)
+    s.power("GND", r11["2"])
+    d1 = s.place("D1", 152.4, 17.78, a=180, ref_at=(161.29, 12.7, "left"), val_at=(161.29, 15.24, "left"))
+    s.w(d1["1"], (160.02, 22.86))
+    s.w(d1["3"], (152.4, 5.08))
+    sw = s.place("SW2", 157.48, 5.08, ref_at=(157.48, -2.54, None), val_at=(157.48, 0, None))
+    s.power("GND", sw["2"])
+    s.w(d1["2"], (132.08, 17.78))
+    s.label("PWR_BTN", (132.08, 17.78), 180)
+    r12 = s.place("R12", 139.7, 13.97)
+    s.power("+3V3", r12["1"])
+    s.text("Power button: press to turn on; firmware holds PWR_HOLD high,", 116.84, 53.34)
+    s.text("reads PWR_BTN (low = pressed) and turns off on a long press", 116.84, 55.88)
+    r13 = s.place("R13", 190.5, 46.99)
+    r14 = s.place("R14", 190.5, 57.15)
+    s.w(r13["2"], r14["1"])
+    c10 = s.place("C10", 200.66, 57.15)
+    s.w(r14["1"], c10["1"], (208.28, 53.34))
+    s.label("PWR_SENSE", (208.28, 53.34))
+    s.power("GND", r14["2"])
+    s.power("GND", c10["2"])
 
     s.w(j4["1"], (45.72, 48.26))
     s.power("BAT-", (45.72, 48.26), a=180)
@@ -370,7 +400,7 @@ def mcu_block(s):
 
     # right: signals that leave the block
     for pin, name in (("24", "SDA"), ("25", "SCL"), ("14", "MOT_IN1"), ("11", "MOT_IN2"), ("10", "MOT_IN3"),
-                      ("9", "MOT_IN4"), ("15", "MOT_ENA")):
+                      ("9", "MOT_IN4"), ("15", "MOT_ENA"), ("23", "PWR_HOLD"), ("18", "PWR_BTN"), ("17", "PWR_SENSE")):
         end = (u1[pin][0] + 5.08, u1[pin][1])
         s.w(u1[pin], end)
         s.label(name, end)
@@ -448,7 +478,7 @@ def imu_block(s):
 
 if __name__ == "__main__":
     sheet = Sheet()
-    sheet.block("Battery: 2S protection and power switch", 0, 0, power_block)
+    sheet.block("Battery: 2S protection and soft-latch power switch", 0, 0, power_block)
     sheet.block("ESP32 DevKit, status LED, connectors", 0, 1, mcu_block)
     sheet.block("Motor driver", 1, 0, motor_block)
     sheet.block("IMU (I2C address 0x68)", 1, 1, imu_block)

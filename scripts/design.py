@@ -1,7 +1,7 @@
-"""Balancio board parts and netlist, read straight from the Flux export (flux/project.json).
+"""Balancio board parts and netlist: the Flux export (flux/project.json) plus the Rev 1.1 changes below.
 
-The board was manufactured and works, so the KiCad schematic must connect exactly what Flux connects.
-draw_sch.py draws it; check_netlist.py compares what KiCad exports against flux_nets().
+Rev 1.0 was manufactured and works, so everything Rev 1.1 doesn't change must connect exactly what Flux
+connects. draw_sch.py draws the schematic; check_netlist.py compares what KiCad exports against nets().
 """
 import json
 from pathlib import Path
@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FLUX = json.loads((ROOT / "flux/project.json").read_text())
 
-REV = "1.0"
+REV = "1.1"
 TITLE = "Balancio board"
 
 # Back silkscreen label, Apple-style small print (replaces Flux's front "Balancio Board v0.1"), mirrored so it
@@ -36,6 +36,10 @@ SILK_CHANGES = [
                       SILK_AT[1] - SILK_CAP - (len(SILK_LABEL) - 1) * SILK_PITCH - 0.225 * _em - 0.3,
                       SILK_AT[0] + 0.3, SILK_AT[1] + 0.3)),
 ]
+# Rev 1.1 board changes (see the Rev 1.1 notes below), as Gerber windows where any layer and any hole may differ
+# from the built board: the soft-latch parts at the left edge where SW1 was, the PWR_HOLD/PWR_BTN routes under
+# the DevKit with the GND pour they cut off, and the drops to GPIO25/39 with the GPIO36 divider by the header.
+REV11_CHANGES = [(-35.5, 9.0, -12.0, 27.0), (-21.0, 10.5, 6.0, 22.0), (-14.5, -6.5, 6.0, 15.5)]
 
 # Parts with a matching KiCad library symbol (same pin numbers as the Flux part); the balancio: ones
 # are built by gen_lib.py from the Flux pin lists. Everything else is Device:R or Device:C.
@@ -90,10 +94,63 @@ def flux_nets():
             for n in FLUX["nets"]}
 
 
-if __name__ == "__main__":
-    from_parts = {}
+def nets():
+    """{net name: {(ref, KiCad pin number)}} of PARTS (connections only: nets with two or more pins)."""
+    out = {}
     for ref, p in PARTS.items():
         for pin, net in p["pins"].items():
-            from_parts.setdefault(net, set()).add((ref, pin))
-    assert from_parts == flux_nets(), "component pins disagree with Flux nets"
-    print(len(PARTS), "parts", len(from_parts), "nets")
+            out.setdefault(net, set()).add((ref, pin))
+    return {k: v for k, v in out.items() if len(v) > 1}
+
+
+assert {k: v for k, v in flux_nets().items() if len(v) > 1} == nets(), "component pins disagree with Flux nets"
+
+# ---- Rev 1.1 ----
+# Power switch: SW1, a panel toggle in the battery line (no slim switch carries the motor current), becomes a
+# P-FET soft latch. Q3 switches VBAT -> VIN, off while R10 holds its gate at VBAT. Pressing SW2 pulls the gate
+# low through D1, the board boots, and firmware holds Q3 on by driving Q4's gate (GPIO25) high first thing in
+# setup(). D1's other anode lets the ESP32 read the button on GPIO39 (R12 pull-up, active low); firmware turns
+# the board off on a long press by dropping GPIO25. R13/R14/C10 put VIN/4 on GPIO36 (ADC) for the battery level.
+# PWR37 = VBAT, PWR8 = VIN, PWR38 = +3V3 (Flux's net names).
+del PARTS["SW1"]
+FOOTPRINTS.pop("E-Switch_100AWSP1T1B4M2RE")
+FOOTPRINTS["SOIC-8_3.9x4.9mm_P1.27mm"] = ("Q3", "Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm")
+FOOTPRINTS["SOT-23"] = ("Q4 D1", "Package_TO_SOT_SMD.3dshapes/SOT-23")
+FOOTPRINTS["SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"] = (
+    "SW2", "Button_Switch_SMD.3dshapes/SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010")
+FOOTPRINTS["R_0805_2012Metric"] = (FOOTPRINTS["R_0805_2012Metric"][0] + " R10 R11 R12 R13 R14",
+                                   FOOTPRINTS["R_0805_2012Metric"][1])
+FOOTPRINTS["C_0805_2012Metric"] = (FOOTPRINTS["C_0805_2012Metric"][0] + " C10", FOOTPRINTS["C_0805_2012Metric"][1])
+FOOTPRINT_OF = {r: name for name, (refs, _) in FOOTPRINTS.items() for r in refs.split()}
+SYMBOLS.update({"Q3": "Transistor_FET:IRF7404", "Q4": "Transistor_FET:2N7002", "D1": "Diode:BAT54C",
+                "SW2": "Switch:SW_Push"})  # IRF7404: same single P-FET SO-8 pinout as the AO4407A
+for ref, value, mpn, mfr, pins in [
+    ("Q3", "AO4407A", "AO4407A", "Alpha & Omega", {"1": "PWR37", "2": "PWR37", "3": "PWR37", "4": "PWR_GATE",
+                                                   "5": "PWR8", "6": "PWR8", "7": "PWR8", "8": "PWR8"}),
+    ("R10", "100kΩ", "", "", {"1": "PWR_GATE", "2": "PWR37"}),
+    ("Q4", "2N7002", "2N7002", "Jiangsu Changjing", {"1": "PWR_HOLD", "2": "GND", "3": "PWR_GATE"}),
+    ("R11", "100kΩ", "", "", {"1": "PWR_HOLD", "2": "GND"}),
+    ("D1", "BAT54C", "BAT54C,215", "Nexperia", {"1": "PWR_GATE", "2": "PWR_BTN", "3": "PWR_KEY"}),
+    ("SW2", "SKRTLAE010", "SKRTLAE010", "Alps Alpine", {"1": "PWR_KEY", "2": "GND"}),
+    ("R12", "10kΩ", "", "", {"1": "PWR38", "2": "PWR_BTN"}),
+    ("R13", "100kΩ", "", "", {"1": "PWR8", "2": "PWR_SENSE"}),
+    ("R14", "33kΩ", "", "", {"1": "PWR_SENSE", "2": "GND"}),
+    ("C10", "100nF", "", "", {"1": "PWR_SENSE", "2": "GND"}),
+]:
+    PARTS[ref] = dict(sym=SYMBOLS.get(ref) or {"R": "Device:R", "C": "Device:C"}[ref[0]], value=value, mpn=mpn,
+                      mfr=mfr, lcsc="", bom=True, pins=pins)
+PARTS["U1"]["pins"].update({"23": "PWR_HOLD", "18": "PWR_BTN", "17": "PWR_SENSE"})  # GPIO25, GPIO39, GPIO36
+
+# LCSC numbers for JLCPCB assembly, by value, each checked on jlcpcb.com/partdetail/<number> (2026-11-13).
+# Passives are JLCPCB Basic parts. 5060BRG4 (LED1) isn't stocked there.
+LCSC = {"2.2nF": "C28260", "100nF": "C49678", "10nF": "C1710", "2.2uF": "C377773", "4.7kΩ": "C17673",
+        "100Ω": "C17408", "330Ω": "C17630", "2kΩ": "C17604", "100kΩ": "C149504", "10kΩ": "C17414", "33kΩ": "C17633",
+        "MPU-6050": "C24112", "HY2120-AB": "C168776", "AO4407A": "C16072", "2N7002": "C8545", "BAT54C": "C37704",
+        "SKRTLAE010": "C110293", "B2B-PH-K-S(LF)(SN)": "C131337", "B4B-PH-K-S(LF)(SN)": "C131334",
+        "B3B-XH-A(LF)(SN)": "C144394"}
+for p in PARTS.values():
+    p["lcsc"] = p["lcsc"] or LCSC.get(p["value"], "")
+
+
+if __name__ == "__main__":
+    print(len(PARTS), "parts", len(nets()), "nets")
