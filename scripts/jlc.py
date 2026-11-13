@@ -1,28 +1,60 @@
-"""JLCPCB assembly files: BOM and CPL for the SMD parts, which JLCPCB places. The JST connectors and the DevKit
-are through-hole and hand-soldered, so they are left out.
+"""Turn KiCad's BOM and placement exports into the two files JLCPCB's assembly order takes.
 
-Usage: jlc.py <KiCad BOM csv> <KiCad pos csv, --smd-only> <out dir>
+    python3 scripts/jlc.py <bom.csv> <pos.csv> <out dir>
+
+  <bom.csv>  every part, from `kicad-cli sch export bom` (columns already named as JLCPCB wants)
+  <pos.csv>  the SMD parts only, from `kicad-cli pcb export pos --smd-only`
+
+It writes:
+  balancio-cpl.csv  where each SMD part goes: KiCad's columns, renamed to JLCPCB's
+  balancio-bom.csv  what to buy for those parts: the BOM minus the through-hole parts (the JST connectors
+                    and the DevKit), which are soldered by hand
 """
 import csv
 import sys
 
-bom, pos, out = sys.argv[1:]
-rows = list(csv.DictReader(open(pos)))
-smd = {r["Ref"] for r in rows}
-with open(f"{out}/balancio-cpl.csv", "w", newline="") as f:
-    w = csv.writer(f)
-    w.writerow(["Designator", "Mid X", "Mid Y", "Layer", "Rotation"])
-    for r in rows:
-        w.writerow([r["Ref"], r["PosX"], r["PosY"], r["Side"].capitalize(), r["Rot"]])
-missing = []
-with open(bom) as f, open(f"{out}/balancio-bom.csv", "w", newline="") as g:
-    rd, w = csv.DictReader(f), csv.writer(g)
-    w.writerow(rd.fieldnames)
-    for r in rd:
-        refs = [x for x in r["Designator"].split(",") if x in smd]
-        if refs:
-            r["Designator"] = ",".join(refs)
-            w.writerow(r.values())
-            missing += refs if not r["LCSC Part #"] else []
-print(f"JLCPCB files: {len(smd)} SMD parts", f"(no LCSC number, place by hand or pick one: {', '.join(missing)})"
-      if missing else "")
+
+def read_placements(pos_csv):
+    """KiCad's placement rows, one per SMD part."""
+    with open(pos_csv, newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def write_cpl(placements, out_csv):
+    """The placement file, with JLCPCB's column names and 'Top' for KiCad's 'top'."""
+    with open(out_csv, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["Designator", "Mid X", "Mid Y", "Layer", "Rotation"])
+        for p in placements:
+            w.writerow([p["Ref"], p["PosX"], p["PosY"], p["Side"].capitalize(), p["Rot"]])
+
+
+def write_smd_bom(bom_csv, smd_refs, out_csv):
+    """The BOM, keeping only the references JLCPCB places. Returns the placed parts with no LCSC number."""
+    no_lcsc = []
+    with open(bom_csv, newline="") as f, open(out_csv, "w", newline="") as g:
+        bom, w = csv.DictReader(f), csv.writer(g)
+        w.writerow(bom.fieldnames)
+        for line in bom:  # one line per group of identical parts, e.g. Designator "C2,C3,C8"
+            refs = [r for r in line["Designator"].split(",") if r in smd_refs]
+            if not refs:
+                continue  # all through-hole
+            line["Designator"] = ",".join(refs)
+            w.writerow(line.values())
+            if not line["LCSC Part #"]:
+                no_lcsc += refs
+    return no_lcsc
+
+
+def main():
+    bom_csv, pos_csv, out = sys.argv[1:]
+    placements = read_placements(pos_csv)
+    write_cpl(placements, f"{out}/balancio-cpl.csv")
+    no_lcsc = write_smd_bom(bom_csv, {p["Ref"] for p in placements}, f"{out}/balancio-bom.csv")
+
+    print(f"JLCPCB files: {len(placements)} SMD parts")
+    if no_lcsc:
+        print(f"  No LCSC number, so pick one or place by hand: {', '.join(no_lcsc)}")
+
+
+main()
