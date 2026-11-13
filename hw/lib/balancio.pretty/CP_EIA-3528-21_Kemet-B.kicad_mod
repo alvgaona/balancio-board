@@ -1,0 +1,44 @@
+(footprint
+	"CP_EIA-3528-21_Kemet-B"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr smd)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "662ada73-8ed7-53a2-a1a1-6e533c180fe6")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"CP_EIA-3528-21_Kemet-B"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ddd28c7c-ab80-567b-9742-76e94ad76313")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		smd
+		rect
+		(at 1.9 0 0)
+		(size 1.9 2.38)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"2"
+		smd
+		rect
+		(at -1.9 0 0)
+		(size 1.9 2.38)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(model
+		"${KICAD10_3DMODEL_DIR}/Capacitor_Tantalum_SMD.3dshapes/CP_EIA-3528-21_Kemet-B.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 180))))

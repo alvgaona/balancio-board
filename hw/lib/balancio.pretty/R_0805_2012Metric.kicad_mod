@@ -1,0 +1,46 @@
+(footprint
+	"R_0805_2012Metric"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr smd)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "69abf4fd-3f90-54b9-81ba-539f39d99a8f")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"R_0805_2012Metric"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "10ddacd7-73da-55a3-9513-bb7d37a83313")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		smd
+		roundrect
+		(at -0.9125 0 0)
+		(size 1.025 1.4)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.1024)
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"2"
+		smd
+		roundrect
+		(at 0.9125 0 0)
+		(size 1.025 1.4)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.1024)
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(model
+		"${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))))

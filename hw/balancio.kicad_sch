@@ -2071,7 +2071,11 @@
 		(uuid "3c90cd9e-2d2d-54f4-9516-52748e99ede9")
 		(property "Reference" "J4" (at 78.74 54.61 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "B3B-XH-A(LF)(SN)" (at 78.74 67.31 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 78.74 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical"
+			(at 78.74 60.96 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 78.74 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 78.74 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "B3B-XH-A(LF)(SN)" (at 78.74 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2098,7 +2102,11 @@
 		(uuid "14839a4b-a89b-5160-b6a2-734d6c3f2aa2")
 		(property "Reference" "SW1" (at 208.28 49.53 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "100AWSP1T1B4M2RE" (at 210.82 62.23 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 210.82 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:E-Switch_100AWSP1T1B4M2RE"
+			(at 210.82 55.88 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 210.82 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 210.82 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -2231,7 +2239,11 @@
 		(uuid "ed426263-10cc-5325-9b95-766b62428458")
 		(property "Reference" "U3" (at 143.51 74.93 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "HY2120-AB" (at 143.51 77.47 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 137.16 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:SOT-23-6"
+			(at 137.16 81.28 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 137.16 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 137.16 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "HY2120-AB" (at 137.16 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2260,7 +2272,11 @@
 		(uuid "b48cc45c-e814-5d12-9601-790ca7ae3a5b")
 		(property "Reference" "R7" (at 116.84 66.04 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "330Ω" (at 116.84 68.58 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "" (at 119.38 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 119.38 67.31 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 119.38 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 119.38 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 119.38 67.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2281,7 +2297,11 @@
 		(uuid "50fc1502-468d-5393-ad94-092535d00b9d")
 		(property "Reference" "C8" (at 124.46 76.2 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "100nF" (at 124.46 78.74 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "" (at 127 77.47 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 127 77.47 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 127 77.47 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 127 77.47 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 127 77.47 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2319,7 +2339,11 @@
 		(uuid "fac2d95e-6ffa-53be-8001-d62b22ed13ae")
 		(property "Reference" "R8" (at 111.76 86.36 90) (effects (font (size 1.27 1.27))))
 		(property "Value" "330Ω" (at 111.76 91.44 90) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 111.76 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 111.76 88.9 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 111.76 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 111.76 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 111.76 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2340,7 +2364,11 @@
 		(uuid "b0da6638-2da6-500e-b57a-3e1d3c051737")
 		(property "Reference" "C9" (at 121.92 91.44 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "100nF" (at 121.92 93.98 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 119.38 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 119.38 92.71 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 119.38 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 119.38 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 119.38 92.71 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2395,7 +2423,11 @@
 		(uuid "a1238f83-a83d-5277-aa6f-f913997b8776")
 		(property "Reference" "R9" (at 154.94 88.9 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "2kΩ" (at 154.94 91.44 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 152.4 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 152.4 90.17 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 152.4 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 152.4 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 152.4 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2433,7 +2465,11 @@
 		(uuid "09f07885-9646-51ac-993e-35797d119f87")
 		(property "Reference" "Q1" (at 166.37 85.09 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "AP8205A" (at 166.37 87.63 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "" (at 172.72 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:TSSOP-8_4.4x3mm_P0.65mm"
+			(at 172.72 91.44 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 172.72 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 172.72 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "AP8205A" (at 172.72 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2465,7 +2501,11 @@
 		(uuid "77298238-463e-5d96-8b3f-06930d8859d2")
 		(property "Reference" "Q2" (at 204.47 85.09 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "AP8205A" (at 204.47 87.63 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "" (at 198.12 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:TSSOP-8_4.4x3mm_P0.65mm"
+			(at 198.12 91.44 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 198.12 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 198.12 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "AP8205A" (at 198.12 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2568,7 +2608,11 @@
 			"ESP32-DEVKIT-V1"
 			(at 167.64 223.52 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 162.56 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:ESP32-DEVKIT-V1"
+			(at 162.56 157.48 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 162.56 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 162.56 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -2702,7 +2746,11 @@
 			"B4B-PH-K-S(LF)(SN)"
 			(at 120.65 160.02 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 124.46 160.02 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
+			(at 124.46 160.02 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 124.46 160.02 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 124.46 160.02 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -2772,7 +2820,11 @@
 			"B4B-PH-K-S(LF)(SN)"
 			(at 120.65 175.26 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 124.46 175.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
+			(at 124.46 175.26 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 124.46 175.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 124.46 175.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -2842,7 +2894,11 @@
 			"B4B-PH-K-S(LF)(SN)"
 			(at 120.65 190.5 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 124.46 190.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
+			(at 124.46 190.5 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 124.46 190.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 124.46 190.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -2878,7 +2934,11 @@
 			"B4B-PH-K-S(LF)(SN)"
 			(at 120.65 203.2 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 124.46 203.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
+			(at 124.46 203.2 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 124.46 203.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 124.46 203.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -2909,7 +2969,11 @@
 		(uuid "5c9babb6-f333-5524-a154-d3d68a2a69e5")
 		(property "Reference" "LED1" (at 187.96 153.67 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "5060BRG4" (at 187.96 171.45 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 187.96 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:LED_RGB_5050-6"
+			(at 187.96 157.48 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 187.96 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 187.96 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "5060BRG4" (at 187.96 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2938,7 +3002,11 @@
 		(uuid "7d84bafb-2bd8-523a-aa71-8ac7291dabf6")
 		(property "Reference" "R6" (at 200.66 155.57 90) (effects (font (size 1.27 1.27))))
 		(property "Value" "100Ω" (at 205.74 155.57 90) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 203.2 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 203.2 157.48 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 203.2 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 203.2 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 203.2 157.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2959,7 +3027,11 @@
 		(uuid "9dc4069f-ae12-5f0b-89df-662e3072402c")
 		(property "Reference" "R5" (at 200.66 160.65 90) (effects (font (size 1.27 1.27))))
 		(property "Value" "100Ω" (at 205.74 160.65 90) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 203.2 162.56 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 203.2 162.56 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 203.2 162.56 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 203.2 162.56 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 203.2 162.56 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -2980,7 +3052,11 @@
 		(uuid "38aac3c4-f2e3-59b8-bc43-5ef3c2296875")
 		(property "Reference" "R4" (at 200.66 165.73 90) (effects (font (size 1.27 1.27))))
 		(property "Value" "100Ω" (at 205.74 165.73 90) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 203.2 167.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 203.2 167.64 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 203.2 167.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 203.2 167.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 203.2 167.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3022,7 +3098,11 @@
 			"DRV8833CPWPR"
 			(at 299.72 95.25 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 297.18 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:TSSOP-16-1EP_4.4x5mm_P0.65mm"
+			(at 297.18 81.28 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 297.18 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 297.18 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "DRV8833CPWPR" (at 297.18 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3063,7 +3143,11 @@
 		(uuid "eb4e022e-d42a-572a-9285-47dfd81a5a48")
 		(property "Reference" "C6" (at 264.16 68.58 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "10nF" (at 264.16 71.12 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 266.7 69.85 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 266.7 69.85 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 266.7 69.85 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 266.7 69.85 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 266.7 69.85 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3135,7 +3219,11 @@
 		(uuid "5c26ba56-544f-589d-af55-62f472d8634f")
 		(property "Reference" "C7" (at 317.5 53.34 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "10uF" (at 317.5 55.88 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 314.96 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:CP_EIA-3528-21_Kemet-B"
+			(at 314.96 54.61 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 314.96 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 314.96 54.61 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -3181,7 +3269,11 @@
 		(uuid "26fe9af1-08ad-5d1f-8077-24cb5c540346")
 		(property "Reference" "C5" (at 287.02 58.42 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "2.2uF" (at 287.02 60.96 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 284.48 59.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 284.48 59.69 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 284.48 59.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 284.48 59.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 284.48 59.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3258,7 +3350,11 @@
 			"B2B-PH-K-S(LF)(SN)"
 			(at 325.12 86.36 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 322.58 86.36 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
+			(at 322.58 86.36 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 322.58 86.36 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 322.58 86.36 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -3291,7 +3387,11 @@
 			"B2B-PH-K-S(LF)(SN)"
 			(at 325.12 91.44 0)
 			(effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 322.58 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
+			(at 322.58 88.9 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 322.58 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 322.58 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property
@@ -3320,7 +3420,11 @@
 		(uuid "489dd58e-6194-55cc-b7fc-13b8478eca4f")
 		(property "Reference" "IC1" (at 289.56 201.93 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "MPU-6050" (at 306.07 205.74 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 302.26 185.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:QFN-24-1EP_4x4mm_P0.5mm"
+			(at 302.26 185.42 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 302.26 185.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 302.26 185.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "MPU-6050" (at 302.26 185.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3370,7 +3474,11 @@
 		(uuid "8cc04c1b-4615-5245-b36c-367aeb154558")
 		(property "Reference" "R2" (at 281.94 170.18 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "4.7kΩ" (at 281.94 172.72 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 279.4 173.99 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 279.4 173.99 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 279.4 173.99 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 279.4 173.99 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 279.4 173.99 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3391,7 +3499,11 @@
 		(uuid "2357366d-9f5a-5d64-88c3-741050d50804")
 		(property "Reference" "R3" (at 266.7 172.72 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "4.7kΩ" (at 266.7 175.26 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "" (at 269.24 176.53 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 269.24 176.53 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 269.24 176.53 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 269.24 176.53 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 269.24 176.53 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3429,7 +3541,11 @@
 		(uuid "45e940cb-3514-55a6-bb22-dcaa86862876")
 		(property "Reference" "R1" (at 276.86 185.42 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "4.7kΩ" (at 276.86 187.96 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "" (at 274.32 186.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:R_0805_2012Metric"
+			(at 274.32 186.69 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 274.32 186.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 274.32 186.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 274.32 186.69 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3501,7 +3617,11 @@
 		(uuid "4cb5951f-b55b-536f-8f7f-4f4ac03eb9f9")
 		(property "Reference" "C3" (at 314.96 160.02 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "100nF" (at 314.96 162.56 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 312.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 312.42 161.29 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 312.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 312.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 312.42 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3539,7 +3659,11 @@
 		(uuid "a33a843e-00ec-5b22-805a-a13b3dd25d8d")
 		(property "Reference" "C4" (at 327.66 160.02 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "10nF" (at 327.66 162.56 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 325.12 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 325.12 161.29 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 325.12 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 325.12 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 325.12 161.29 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3594,7 +3718,11 @@
 		(uuid "84d75d69-f541-563e-9fa1-fb40d1331572")
 		(property "Reference" "C1" (at 337.82 193.04 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "2.2nF" (at 337.82 195.58 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "" (at 340.36 194.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 340.36 194.31 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 340.36 194.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 340.36 194.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 340.36 194.31 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -3632,7 +3760,11 @@
 		(uuid "1bcadeb5-f5a3-5965-a3b2-b38b3572f825")
 		(property "Reference" "C2" (at 327.66 195.58 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "100nF" (at 327.66 198.12 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 325.12 196.85 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property
+			"Footprint"
+			"balancio:C_0805_2012Metric"
+			(at 325.12 196.85 0)
+			(effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "~" (at 325.12 196.85 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "" (at 325.12 196.85 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "MPN" "" (at 325.12 196.85 0) (effects (font (size 1.27 1.27)) (hide yes)))

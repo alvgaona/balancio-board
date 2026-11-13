@@ -1,0 +1,334 @@
+(footprint
+	"ESP32-DEVKIT-V1"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr through_hole)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "b3d05edb-0969-5b6c-8e9e-ff38b0ef877c")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"ESP32-DEVKIT-V1"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fbd5cc90-3abd-518f-9b58-438d86c6357d")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		""
+		np_thru_hole
+		circle
+		(at -12.28 -23.475 0)
+		(size 3 3)
+		(drill 3)
+		(layers "*.Cu")
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		""
+		np_thru_hole
+		circle
+		(at -12.28 23.475 0)
+		(size 3 3)
+		(drill 3)
+		(layers "*.Cu")
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(pad
+		""
+		np_thru_hole
+		circle
+		(at 12.23 -23.475 0)
+		(size 3 3)
+		(drill 3)
+		(layers "*.Cu")
+		(uuid "3e935bba-bf6c-518e-ab70-4d39def6916f"))
+	(pad
+		""
+		np_thru_hole
+		circle
+		(at 12.23 23.475 0)
+		(size 3 3)
+		(drill 3)
+		(layers "*.Cu")
+		(uuid "32a2f751-d330-59f1-9761-32e647554339"))
+	(pad
+		"1"
+		thru_hole
+		rect
+		(at -12.7 -15.515 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "63dbd5e8-b60a-579d-b4ba-3af30d38a6ad"))
+	(pad
+		"10"
+		thru_hole
+		circle
+		(at -12.7 7.345 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "d6a1e88c-4195-5eaf-9be8-cdaf3a202e31"))
+	(pad
+		"11"
+		thru_hole
+		circle
+		(at -12.7 9.885 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "ba8b7b71-8bba-54ed-8234-6909cfe113d2"))
+	(pad
+		"12"
+		thru_hole
+		circle
+		(at -12.7 12.425 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "0641f283-b55c-5fb1-9299-1f921e33095c"))
+	(pad
+		"13"
+		thru_hole
+		circle
+		(at -12.7 14.965 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "aeae05b9-946a-5fc3-80d0-30b62ed86bb3"))
+	(pad
+		"14"
+		thru_hole
+		circle
+		(at -12.7 17.505 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "00fe439e-cd68-5ad0-955e-b1130d4e508c"))
+	(pad
+		"15"
+		thru_hole
+		circle
+		(at -12.7 20.045 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "b650e36a-033e-56d3-8782-16f06f524be8"))
+	(pad
+		"16"
+		thru_hole
+		circle
+		(at 12.7 20.045 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "ff47e7fb-977e-5791-9454-adac7f4e8519"))
+	(pad
+		"17"
+		thru_hole
+		circle
+		(at 12.7 17.505 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "f73d1ffd-ad21-5059-aac0-a692964be211"))
+	(pad
+		"18"
+		thru_hole
+		circle
+		(at 12.7 14.965 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "f645d202-169c-50a0-8d13-109707565045"))
+	(pad
+		"19"
+		thru_hole
+		circle
+		(at 12.7 12.425 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "b00b2c98-f6ca-50f4-923c-c241fb5fabb0"))
+	(pad
+		"2"
+		thru_hole
+		circle
+		(at -12.7 -12.975 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "aafdfa41-b8ab-5eb2-8f34-04842bac315d"))
+	(pad
+		"20"
+		thru_hole
+		circle
+		(at 12.7 9.885 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "5b677f8d-730d-5aaf-8859-c416ff489066"))
+	(pad
+		"21"
+		thru_hole
+		circle
+		(at 12.7 7.345 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "6a886b4d-bf86-53e8-8835-7fc34e54fd68"))
+	(pad
+		"22"
+		thru_hole
+		circle
+		(at 12.7 4.805 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "cba78730-4407-5a62-8b9c-957351401e95"))
+	(pad
+		"23"
+		thru_hole
+		circle
+		(at 12.7 2.265 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "57ca63b5-1d17-5e83-a882-9c7ee7397558"))
+	(pad
+		"24"
+		thru_hole
+		circle
+		(at 12.7 -0.275 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "083f3782-a485-5ed5-967e-0628d232ee08"))
+	(pad
+		"25"
+		thru_hole
+		circle
+		(at 12.7 -2.815 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "29c639e8-2678-5d76-9e28-e938a4084df1"))
+	(pad
+		"26"
+		thru_hole
+		circle
+		(at 12.7 -5.355 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "e780ee95-baae-5691-bada-0616fbe7bc05"))
+	(pad
+		"27"
+		thru_hole
+		circle
+		(at 12.7 -7.895 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "e0688925-9bf1-55b1-9eeb-2e0a20487cf1"))
+	(pad
+		"28"
+		thru_hole
+		circle
+		(at 12.7 -10.435 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "2032e79f-690f-5daf-bc8b-f57fc51fe053"))
+	(pad
+		"29"
+		thru_hole
+		circle
+		(at 12.7 -12.975 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "3c95ed75-8461-5d8f-839a-4ae021c23e01"))
+	(pad
+		"3"
+		thru_hole
+		circle
+		(at -12.7 -10.435 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "5deeb0d4-fa18-5289-81a7-217383330eea"))
+	(pad
+		"30"
+		thru_hole
+		circle
+		(at 12.7 -15.515 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "a444433c-f3f0-586e-a7a5-b6f3bbfb2c94"))
+	(pad
+		"4"
+		thru_hole
+		circle
+		(at -12.7 -7.895 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "779e5a5f-59e7-5c13-9331-2501741e038d"))
+	(pad
+		"5"
+		thru_hole
+		circle
+		(at -12.7 -5.355 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "d3b1ac15-ea9d-5b69-82c5-d7d7cc761395"))
+	(pad
+		"6"
+		thru_hole
+		circle
+		(at -12.7 -2.815 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "35837538-bee5-5043-99fe-0e5c4e75a187"))
+	(pad
+		"7"
+		thru_hole
+		circle
+		(at -12.7 -0.275 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "8d278d9e-0213-57cc-997e-45454c24a626"))
+	(pad
+		"8"
+		thru_hole
+		circle
+		(at -12.7 2.265 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "351c3dde-d4df-5a07-b47a-b80655f0c529"))
+	(pad
+		"9"
+		thru_hole
+		circle
+		(at -12.7 4.805 0)
+		(size 2 2)
+		(drill 1.02)
+		(layers "*.Cu" "*.Mask")
+		(uuid "04cbb006-96b3-515d-8bf1-e0d989dd294b"))
+	(model
+		"${KIPRJMOD}/../flux/assets/ESP-WROOM32-6eb47d2f-f9fd-51d0-6081-4d9413e40023.STEP"
+		(offset (xyz -1.5 14.6 8))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 270 0 180))))

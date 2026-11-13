@@ -1,0 +1,32 @@
+(footprint
+	"MountingHole_3mm"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "ff765ce5-0b13-57a5-8d92-4edb6fd6a010")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"MountingHole_3mm"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e8a9d681-10fd-5652-b128-ba1fc1fe4fc8")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		""
+		np_thru_hole
+		circle
+		(at 0 0 0)
+		(size 3 3)
+		(drill 3)
+		(layers "*.Cu")
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5")))

@@ -1,0 +1,100 @@
+(footprint
+	"TSSOP-8_4.4x3mm_P0.65mm"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr smd)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "e5690113-9197-5a42-8850-7701c024dbd4")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"TSSOP-8_4.4x3mm_P0.65mm"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "33018d1c-07f6-5524-abb7-20448e612e65")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		smd
+		roundrect
+		(at -0.98 3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"2"
+		smd
+		roundrect
+		(at -0.32 3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(pad
+		"3"
+		smd
+		roundrect
+		(at 0.33 3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "3e935bba-bf6c-518e-ab70-4d39def6916f"))
+	(pad
+		"4"
+		smd
+		roundrect
+		(at 0.98 3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "32a2f751-d330-59f1-9761-32e647554339"))
+	(pad
+		"5"
+		smd
+		roundrect
+		(at 0.98 -3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "63dbd5e8-b60a-579d-b4ba-3af30d38a6ad"))
+	(pad
+		"6"
+		smd
+		roundrect
+		(at 0.33 -3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "d6a1e88c-4195-5eaf-9be8-cdaf3a202e31"))
+	(pad
+		"7"
+		smd
+		roundrect
+		(at -0.32 -3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "ba8b7b71-8bba-54ed-8234-6909cfe113d2"))
+	(pad
+		"8"
+		smd
+		roundrect
+		(at -0.98 -3.2 0)
+		(size 0.4 1.5)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "0641f283-b55c-5fb1-9299-1f921e33095c"))
+	(model
+		"${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-8_4.4x3mm_P0.65mm.step"
+		(offset (xyz 0.0025 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 270))))

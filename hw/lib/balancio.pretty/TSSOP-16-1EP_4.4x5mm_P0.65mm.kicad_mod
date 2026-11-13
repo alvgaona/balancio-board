@@ -1,0 +1,180 @@
+(footprint
+	"TSSOP-16-1EP_4.4x5mm_P0.65mm"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr smd)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "fc607df1-96a0-571a-85b7-577f6c69870c")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"TSSOP-16-1EP_4.4x5mm_P0.65mm"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b9905e16-74c3-5237-b981-174c26b67b1c")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		smd
+		roundrect
+		(at -2.28 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"10"
+		smd
+		roundrect
+		(at 1.63 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(pad
+		"11"
+		smd
+		roundrect
+		(at 0.98 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "3e935bba-bf6c-518e-ab70-4d39def6916f"))
+	(pad
+		"12"
+		smd
+		roundrect
+		(at 0.33 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "32a2f751-d330-59f1-9761-32e647554339"))
+	(pad
+		"13"
+		smd
+		roundrect
+		(at -0.32 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "63dbd5e8-b60a-579d-b4ba-3af30d38a6ad"))
+	(pad
+		"14"
+		smd
+		roundrect
+		(at -0.98 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "d6a1e88c-4195-5eaf-9be8-cdaf3a202e31"))
+	(pad
+		"15"
+		smd
+		roundrect
+		(at -1.63 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "ba8b7b71-8bba-54ed-8234-6909cfe113d2"))
+	(pad
+		"16"
+		smd
+		roundrect
+		(at -2.28 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "0641f283-b55c-5fb1-9299-1f921e33095c"))
+	(pad
+		"17"
+		smd
+		rect
+		(at 0 0 0)
+		(size 2.5 2.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "aeae05b9-946a-5fc3-80d0-30b62ed86bb3"))
+	(pad
+		"2"
+		smd
+		roundrect
+		(at -1.63 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "00fe439e-cd68-5ad0-955e-b1130d4e508c"))
+	(pad
+		"3"
+		smd
+		roundrect
+		(at -0.98 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "b650e36a-033e-56d3-8782-16f06f524be8"))
+	(pad
+		"4"
+		smd
+		roundrect
+		(at -0.32 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "ff47e7fb-977e-5791-9454-adac7f4e8519"))
+	(pad
+		"5"
+		smd
+		roundrect
+		(at 0.33 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "f73d1ffd-ad21-5059-aac0-a692964be211"))
+	(pad
+		"6"
+		smd
+		roundrect
+		(at 0.98 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "f645d202-169c-50a0-8d13-109707565045"))
+	(pad
+		"7"
+		smd
+		roundrect
+		(at 1.63 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "b00b2c98-f6ca-50f4-923c-c241fb5fabb0"))
+	(pad
+		"8"
+		smd
+		roundrect
+		(at 2.28 2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "aafdfa41-b8ab-5eb2-8f34-04842bac315d"))
+	(pad
+		"9"
+		smd
+		roundrect
+		(at 2.28 -2.87 0)
+		(size 0.34 1.75)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "5b677f8d-730d-5aaf-8859-c416ff489066"))
+	(model
+		"${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16-1EP_4.4x5mm_P0.65mm.step"
+		(offset (xyz 0.0013 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 270))))

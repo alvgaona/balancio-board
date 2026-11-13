@@ -1,0 +1,58 @@
+(footprint
+	"JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr through_hole)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "d2a63674-8302-5640-b6ef-a726013a5a0a")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ab2cb0ec-6b3d-5ef3-9cb6-a396067818a1")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		thru_hole
+		roundrect
+		(at 0 0 0)
+		(size 1.7 1.95)
+		(drill 0.95)
+		(layers "*.Cu" "*.Mask")
+		(roundrect_rratio 0.086)
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"2"
+		thru_hole
+		roundrect
+		(at 2.5 0 0)
+		(size 1.7 1.95)
+		(drill 0.95)
+		(layers "*.Cu" "*.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(pad
+		"3"
+		thru_hole
+		roundrect
+		(at 5 0 0)
+		(size 1.7 1.95)
+		(drill 0.95)
+		(layers "*.Cu" "*.Mask")
+		(roundrect_rratio 0.5)
+		(uuid "3e935bba-bf6c-518e-ab70-4d39def6916f"))
+	(model
+		"${KICAD10_3DMODEL_DIR}/Connector_JST.3dshapes/JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))))

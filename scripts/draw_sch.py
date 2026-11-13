@@ -9,7 +9,7 @@ import sys
 import uuid
 from datetime import date
 
-from design import PARTS, REV, TITLE
+from design import FOOTPRINT_OF, PARTS, REV, TITLE
 from sexpr import ROOT, Sym, dump, find, first, get_symbol, pins
 
 PROJECT = "balancio"
@@ -255,7 +255,7 @@ class Sheet:
         flip = {"left": "right", "right": "left"} if s.a == 180 or s.mirror == "y" else {}
         for k, (v, x, y, just, hide) in s.fields.items():
             node.append([Sym("property"), k, v, [Sym("at"), x, y, s.a % 180], eff(1.27, flip.get(just, just), hide)])
-        hidden = [("Footprint", ""), ("Datasheet", "~"), ("Description", "")]
+        hidden = [("Footprint", f"balancio:{FOOTPRINT_OF[s.ref]}" if p else ""), ("Datasheet", "~"), ("Description", "")]
         if p:
             hidden += [("MPN", p["mpn"]), ("Manufacturer", p["mfr"]), ("LCSC", p["lcsc"])]
         for k, v in hidden:

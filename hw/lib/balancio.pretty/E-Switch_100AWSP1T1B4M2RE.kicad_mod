@@ -1,0 +1,55 @@
+(footprint
+	"E-Switch_100AWSP1T1B4M2RE"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr through_hole)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "f76d1b67-c17d-5ee2-8462-fa35a01c8e5d")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"E-Switch_100AWSP1T1B4M2RE"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "08376fd9-6000-58b6-9567-0746e7f6fd51")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		thru_hole
+		circle
+		(at 0 0 0)
+		(size 2.775 2.775)
+		(drill 1.85)
+		(layers "*.Cu" "*.Mask")
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"2"
+		thru_hole
+		circle
+		(at 4.7 -0 0)
+		(size 2.775 2.775)
+		(drill 1.85)
+		(layers "*.Cu" "*.Mask")
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(pad
+		"3"
+		thru_hole
+		circle
+		(at 9.4 -0 0)
+		(size 2.775 2.775)
+		(drill 1.85)
+		(layers "*.Cu" "*.Mask")
+		(uuid "3e935bba-bf6c-518e-ab70-4d39def6916f"))
+	(model
+		"${KIPRJMOD}/../flux/assets/100AWSP1T1B4M2RE-8235b81f-51df-4331-b117-80fe38289d24.stp"
+		(offset (xyz 4.7 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))))

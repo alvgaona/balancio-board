@@ -1,0 +1,76 @@
+(footprint
+	"SOT-23-6"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr smd)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "8301e739-f008-5ec4-9fc4-c2919153a47d")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"SOT-23-6"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c5e629e1-4bf9-5d4b-8789-77f6586bfe9c")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		smd
+		rect
+		(at -1.1 -0.95 0)
+		(size 1.06 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"2"
+		smd
+		rect
+		(at -1.1 0 0)
+		(size 1.06 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(pad
+		"3"
+		smd
+		rect
+		(at -1.1 0.95 0)
+		(size 1.06 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "3e935bba-bf6c-518e-ab70-4d39def6916f"))
+	(pad
+		"4"
+		smd
+		rect
+		(at 1.1 0.95 0)
+		(size 1.06 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "32a2f751-d330-59f1-9761-32e647554339"))
+	(pad
+		"5"
+		smd
+		rect
+		(at 1.1 0 0)
+		(size 1.06 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "63dbd5e8-b60a-579d-b4ba-3af30d38a6ad"))
+	(pad
+		"6"
+		smd
+		rect
+		(at 1.1 -0.95 0)
+		(size 1.06 0.65)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "d6a1e88c-4195-5eaf-9be8-cdaf3a202e31"))
+	(model
+		"${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-6.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))))

@@ -1,0 +1,9 @@
+(version 1)
+(rule "as built: single-spoke thermals"
+	(constraint min_resolved_spokes 1))
+(rule "pours keep clear of mounting holes, as Flux poured them"
+	(condition "A.Type == 'Zone' && B.Pad_Type == 'NPTH, mechanical'")
+	(constraint hole_clearance (min 0.47mm)))
+(rule "as built: GND track by the J2 pin 2 via"
+	(condition "A.NetName == 'GND' && B.NetName == 'Net-(J2-Pin_2)'")
+	(constraint clearance (min 0.119mm)))

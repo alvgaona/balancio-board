@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "balancio")(type "KiCad")(uri "${KIPRJMOD}/lib/balancio.pretty")(options "")(descr "Footprints built from the Flux board's pads"))
+)

@@ -1,0 +1,76 @@
+(footprint
+	"LED_RGB_5050-6"
+	(version 20240108)
+	(generator "balancio")
+	(layer "F.Cu")
+	(descr "Pads as on the built Balancio board (from Flux)")
+	(attr smd)
+	(property
+		"Reference"
+		"REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "e26e1e2a-72ec-5337-b9c4-c2ebe2a0c677")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(property
+		"Value"
+		"LED_RGB_5050-6"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a7a04c18-9e85-5d7f-a647-afff46ef395b")
+		(effects (font (size 1 1) (thickness 0.15))))
+	(pad
+		"1"
+		smd
+		rect
+		(at -2.4 -1.7 90)
+		(size 1.1 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "f5dbf539-7951-5bad-a71f-47a3ba41a4b5"))
+	(pad
+		"2"
+		smd
+		rect
+		(at -2.4 0 90)
+		(size 1.1 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "3acc3896-c58a-5c25-991d-5cfdc3b3d81b"))
+	(pad
+		"3"
+		smd
+		rect
+		(at -2.4 1.7 90)
+		(size 1.1 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "3e935bba-bf6c-518e-ab70-4d39def6916f"))
+	(pad
+		"4"
+		smd
+		rect
+		(at 2.4 1.7 90)
+		(size 1.1 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "32a2f751-d330-59f1-9761-32e647554339"))
+	(pad
+		"5"
+		smd
+		rect
+		(at 2.4 0 90)
+		(size 1.1 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "63dbd5e8-b60a-579d-b4ba-3af30d38a6ad"))
+	(pad
+		"6"
+		smd
+		rect
+		(at 2.4 -1.7 90)
+		(size 1.1 2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "d6a1e88c-4195-5eaf-9be8-cdaf3a202e31"))
+	(model
+		"${KICAD10_3DMODEL_DIR}/LED_SMD.3dshapes/LED_RGB_5050-6.step"
+		(offset (xyz 0 0 0))
+		(scale (xyz 1 1 1))
+		(rotate (xyz 0 0 0))))
