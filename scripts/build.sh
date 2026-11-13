@@ -60,6 +60,26 @@ export_gerbers() {
   (cd "$OUT/gerbers" && zip -q "../$BOARD-gerbers.zip" "$BOARD"-*.gbr "$BOARD.drl")
 }
 
+# Custom part models are edited in FreeCAD (hw/lib/balancio.3dshapes/*.FCStd); KiCad needs STEP.
+# Regenerate a STEP only when its .FCStd is newer: each export opens FreeCAD for a few seconds,
+# because FreeCAD keeps part colours in its GUI layer.
+convert_models() {
+  for model in hw/lib/balancio.3dshapes/*.FCStd; do
+    if [ "$model" -nt "${model%.FCStd}.step" ]; then
+      log=$(mktemp)
+      FCSTD="$PWD/$model" FCSTD_LOG="$log" "${FREECAD:-/Applications/FreeCAD.app/Contents/MacOS/FreeCAD}" \
+        scripts/fcstd2step.py >/dev/null 2>&1 || true  # the log, not FreeCAD's exit code, says if it worked
+      if ! grep -qx OK "$log"; then
+        echo "FreeCAD could not export $model:"
+        [ -s "$log" ] && cat "$log" || echo "FreeCAD did not run; set FREECAD to the FreeCAD app binary."
+        rm -f "$log"; exit 1
+      fi
+      rm -f "$log"
+      echo "Exported ${model%.FCStd}.step"
+    fi
+  done
+}
+
 # The assembled board in 3D, every part's model in one GLB: open it in Blender or in the viewer
 # (python3 -m http.server 8000, then http://localhost:8000/viewer/).
 export_3d() {
@@ -82,6 +102,7 @@ main() {
   check_drc
   export_schematic
   export_gerbers
+  convert_models
   export_3d
   export_jlcpcb
 }
