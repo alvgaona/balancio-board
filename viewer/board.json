@@ -1,0 +1,25 @@
+{
+  "title": "Balancio Board",
+  "model": "../build/balancio.glb",
+  "pads": "#cfcfca",
+  "metal": {
+    "#d2d1c7": "KiCad library leads and pins (its 'metal grey pins' colour)",
+    "#9ea1a8": "SW2 shell",
+    "#d9d9d1": "SW2 terminals",
+    "#aab2c4": "DevKit micro-USB shell",
+    "#a58400": "DevKit micro-USB contacts",
+    "#ffce75": "ESP32-WROOM castellations",
+    "#cccccc": "ESP32-WROOM shield and pins",
+    "#ffffff": "ESP32-WROOM shield can top",
+    "#ffaa2f": "DevKit gold pads",
+    "#d4d4d1": "DevKit buttons",
+    "#808080": "DevKit SMD pads",
+    "#c4c4c4": "DevKit header pins",
+    "#919196": "DevKit header pins"
+  },
+  "recolor": {
+    "#aab2c4": "#e7e7e7",
+    "#ffffff": "#e5e5e5"
+  },
+  "focus": { "4": "SW2" }
+}
