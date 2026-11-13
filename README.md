@@ -10,7 +10,6 @@ replaces the slide switch with a soft latch (power button on the left edge).
   - `balancio.kicad_sch`, `balancio.kicad_pcb`: schematic and board.
   - `lib/`: the board's own symbols, footprints and the 3D models KiCad doesn't ship (`balancio.3dshapes/`).
 - `scripts/build.sh`: checks the design and writes everything to `build/`.
-- `scripts/design.py`: the intended netlist. A circuit change goes in KiCad and here, or the build fails.
 - `viewer/`: an interactive 3D view of the board, in the browser.
 
 ## Build
@@ -19,13 +18,7 @@ replaces the slide switch with a soft latch (power button on the left edge).
 scripts/build.sh
 ```
 
-It runs:
-
-- ERC;
-- the netlist check against `design.py`;
-- DRC with schematic parity;
-- a comparison of the Gerbers with the ones the working board was built from (read from git history, so it needs
-  a full clone).
+It runs ERC and DRC with schematic parity, and stops on any error before it exports anything.
 
 It writes:
 

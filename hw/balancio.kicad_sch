@@ -10,7 +10,7 @@
 		(rev "1.1")
 		(comment
 			1
-			"Rev 1.0 as built (migrated from Flux); Rev 1.1: soft-latch power switch. Netlist checked by scripts/build.sh"))
+			"Rev 1.0 as built (migrated from Flux); Rev 1.1: soft-latch power switch. Checked by scripts/build.sh"))
 	(lib_symbols
 		(symbol
 			"Connector_Generic:Conn_01x03"
