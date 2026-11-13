@@ -1,0 +1,1129 @@
+{
+  "$id": "https://flux.ai/schemas/flux-project-data/1.0.0.json",
+  "title": "Flux project data",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "flux-project-data"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "units": {
+      "type": "object",
+      "properties": {
+        "length": {
+          "type": "string",
+          "const": "mm"
+        },
+        "angle": {
+          "type": "string",
+          "const": "degrees"
+        }
+      },
+      "required": [
+        "length",
+        "angle"
+      ],
+      "additionalProperties": false
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "owner": {
+          "description": "Flux handle of the project owner.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Public Flux URL of the project.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "owner",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "designator": {
+            "type": "string"
+          },
+          "partName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "manufacturer": {
+            "type": "string"
+          },
+          "manufacturerPartNumber": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "package": {
+            "type": "string"
+          },
+          "datasheetUrl": {
+            "description": "Public datasheet URL.",
+            "type": "string"
+          },
+          "partUrl": {
+            "description": "Public Flux URL of the part.",
+            "type": "string"
+          },
+          "properties": {
+            "description": "All part properties as display text, by property name.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "excludedFromBom": {
+            "type": "boolean"
+          },
+          "pins": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "net": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "number",
+                "name"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "placement": {
+            "description": "Absent when the component is not placed on a board.",
+            "type": "object",
+            "properties": {
+              "board": {
+                "description": "Name of the board that has this component.",
+                "type": "string"
+              },
+              "side": {
+                "type": "string",
+                "enum": [
+                  "top",
+                  "bottom"
+                ]
+              },
+              "center": {
+                "description": "A point in millimeters.",
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              },
+              "rotationDegrees": {
+                "description": "Rotation counterclockwise, seen from the top.",
+                "type": "number"
+              },
+              "pads": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "pin": {
+                      "description": "Pin number or pad name.",
+                      "type": "string"
+                    },
+                    "net": {
+                      "description": "Name of the net on this pad.",
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "smd",
+                        "through-hole",
+                        "non-plated-hole",
+                        "edge-connector"
+                      ]
+                    },
+                    "shape": {
+                      "type": "string",
+                      "enum": [
+                        "circle",
+                        "rectangle",
+                        "custom"
+                      ]
+                    },
+                    "layer": {
+                      "description": "Copper layer name for a surface pad.",
+                      "type": "string"
+                    },
+                    "center": {
+                      "description": "Pad center on the board, in millimeters.",
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number"
+                        },
+                        "y": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "rotationDegrees": {
+                      "description": "Pad rotation on the board, counterclockwise.",
+                      "type": "number"
+                    },
+                    "widthMm": {
+                      "type": "number"
+                    },
+                    "heightMm": {
+                      "type": "number"
+                    },
+                    "cornerRadiusMm": {
+                      "description": "Largest corner radius of a rounded rectangle pad.",
+                      "type": "number"
+                    },
+                    "outline": {
+                      "description": "Pad outline on the board, for custom pad shapes.",
+                      "type": "array",
+                      "items": {
+                        "description": "A point in millimeters.",
+                        "type": "object",
+                        "properties": {
+                          "x": {
+                            "type": "number"
+                          },
+                          "y": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "holeWidthMm": {
+                      "type": "number"
+                    },
+                    "holeHeightMm": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "pin",
+                    "center",
+                    "rotationDegrees"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "board",
+              "side",
+              "center",
+              "rotationDegrees",
+              "pads"
+            ],
+            "additionalProperties": false
+          },
+          "assets": {
+            "description": "Paths of the asset files of this component, from the assets list.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "designator",
+          "partName",
+          "properties",
+          "excludedFromBom",
+          "pins",
+          "assets"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "nets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "pins": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "component": {
+                  "description": "Designator of the component, for example R1.",
+                  "type": "string"
+                },
+                "pin": {
+                  "description": "Pin number or pad name of the component.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "component",
+                "pin"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "name",
+          "pins"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "bom": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "designators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "partName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "manufacturer": {
+            "type": "string"
+          },
+          "manufacturerPartNumber": {
+            "type": "string"
+          },
+          "distributor": {
+            "type": "string"
+          },
+          "distributorPartNumber": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "package": {
+            "type": "string"
+          },
+          "mountType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "designators",
+          "quantity",
+          "partName"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "boards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "widthMm": {
+            "type": "number"
+          },
+          "heightMm": {
+            "type": "number"
+          },
+          "outline": {
+            "description": "Closed board outline. The last point connects to the first point.",
+            "type": "array",
+            "items": {
+              "description": "A point in millimeters.",
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "cutouts": {
+            "description": "Closed outlines of holes and cutouts in the board.",
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "description": "A point in millimeters.",
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "stackup": {
+            "description": "Layers from top to bottom.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Layer type, for example copper, dielectric, soldermask or silkscreen.",
+                  "type": "string"
+                },
+                "side": {
+                  "type": "string"
+                },
+                "thicknessMm": {
+                  "type": "number"
+                },
+                "material": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "thicknessMm"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "traces": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "net": {
+                  "type": "string"
+                },
+                "layer": {
+                  "type": "string"
+                },
+                "start": {
+                  "description": "A point in millimeters.",
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false
+                },
+                "end": {
+                  "description": "A point in millimeters.",
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false
+                },
+                "widthMm": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "layer",
+                "start",
+                "end",
+                "widthMm"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "vias": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "net": {
+                  "type": "string"
+                },
+                "center": {
+                  "description": "A point in millimeters.",
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false
+                },
+                "diameterMm": {
+                  "type": "number"
+                },
+                "holeDiameterMm": {
+                  "type": "number"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "layers": {
+                  "description": "Copper layers that the via connects.",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "center",
+                "diameterMm",
+                "layers"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "pads": {
+            "description": "Pads that do not belong to a component.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "pin": {
+                  "description": "Pin number or pad name.",
+                  "type": "string"
+                },
+                "net": {
+                  "description": "Name of the net on this pad.",
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "smd",
+                    "through-hole",
+                    "non-plated-hole",
+                    "edge-connector"
+                  ]
+                },
+                "shape": {
+                  "type": "string",
+                  "enum": [
+                    "circle",
+                    "rectangle",
+                    "custom"
+                  ]
+                },
+                "layer": {
+                  "description": "Copper layer name for a surface pad.",
+                  "type": "string"
+                },
+                "center": {
+                  "description": "Pad center on the board, in millimeters.",
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false
+                },
+                "rotationDegrees": {
+                  "description": "Pad rotation on the board, counterclockwise.",
+                  "type": "number"
+                },
+                "widthMm": {
+                  "type": "number"
+                },
+                "heightMm": {
+                  "type": "number"
+                },
+                "cornerRadiusMm": {
+                  "description": "Largest corner radius of a rounded rectangle pad.",
+                  "type": "number"
+                },
+                "outline": {
+                  "description": "Pad outline on the board, for custom pad shapes.",
+                  "type": "array",
+                  "items": {
+                    "description": "A point in millimeters.",
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "number"
+                      },
+                      "y": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "holeWidthMm": {
+                  "type": "number"
+                },
+                "holeHeightMm": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "pin",
+                "center",
+                "rotationDegrees"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "copperFills": {
+            "type": "array",
+            "items": {
+              "description": "Copper that Flux poured on one layer for one net, after clearances are cut out.",
+              "type": "object",
+              "properties": {
+                "net": {
+                  "type": "string"
+                },
+                "layer": {
+                  "type": "string"
+                },
+                "areas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "outline": {
+                        "description": "Closed outer outline of the area.",
+                        "type": "array",
+                        "items": {
+                          "description": "A point in millimeters.",
+                          "type": "object",
+                          "properties": {
+                            "x": {
+                              "type": "number"
+                            },
+                            "y": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "x",
+                            "y"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "holes": {
+                        "description": "Closed outlines of the openings in the area.",
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "description": "A point in millimeters.",
+                            "type": "object",
+                            "properties": {
+                              "x": {
+                                "type": "number"
+                              },
+                              "y": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "x",
+                              "y"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "outline",
+                      "holes"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "layer",
+                "areas"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "designRules": {
+            "type": "object",
+            "properties": {
+              "boardEdgeClearanceMm": {
+                "description": "Copper keeps this distance from the board edge.",
+                "type": "number"
+              },
+              "nets": {
+                "type": "array",
+                "items": {
+                  "description": "Effective rules of one net on this board, after all rule sets are applied. The clearance to an object is the matching clearance, held between the matching lower and upper limits.",
+                  "type": "object",
+                  "properties": {
+                    "net": {
+                      "type": "string"
+                    },
+                    "traceWidthMm": {
+                      "type": "number"
+                    },
+                    "minTraceWidthMm": {
+                      "type": "number"
+                    },
+                    "maxTraceWidthMm": {
+                      "type": "number"
+                    },
+                    "clearances": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "appliesTo": {
+                            "description": "Selector of the objects that keep this clearance from the net. * means all objects. Absent when the rule names specific objects.",
+                            "type": "string"
+                          },
+                          "clearanceMm": {
+                            "description": "Absent when noLimit is true.",
+                            "type": "number"
+                          },
+                          "noLimit": {
+                            "description": "True when this rule removes the limit for the objects it applies to.",
+                            "type": "boolean",
+                            "const": true
+                          },
+                          "ruleSet": {
+                            "description": "Name of the design rule set that sets this clearance.",
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "minClearances": {
+                      "description": "Lower limits for the clearances of this net.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "appliesTo": {
+                            "description": "Selector of the objects that keep this clearance from the net. * means all objects. Absent when the rule names specific objects.",
+                            "type": "string"
+                          },
+                          "clearanceMm": {
+                            "description": "Absent when noLimit is true.",
+                            "type": "number"
+                          },
+                          "noLimit": {
+                            "description": "True when this rule removes the limit for the objects it applies to.",
+                            "type": "boolean",
+                            "const": true
+                          },
+                          "ruleSet": {
+                            "description": "Name of the design rule set that sets this clearance.",
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "maxClearances": {
+                      "description": "Upper limits for the clearances of this net.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "appliesTo": {
+                            "description": "Selector of the objects that keep this clearance from the net. * means all objects. Absent when the rule names specific objects.",
+                            "type": "string"
+                          },
+                          "clearanceMm": {
+                            "description": "Absent when noLimit is true.",
+                            "type": "number"
+                          },
+                          "noLimit": {
+                            "description": "True when this rule removes the limit for the objects it applies to.",
+                            "type": "boolean",
+                            "const": true
+                          },
+                          "ruleSet": {
+                            "description": "Name of the design rule set that sets this clearance.",
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "net",
+                    "clearances",
+                    "minClearances",
+                    "maxClearances"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "nets"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "widthMm",
+          "heightMm",
+          "outline",
+          "cutouts",
+          "stackup",
+          "traces",
+          "vias",
+          "pads",
+          "copperFills",
+          "designRules"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "designRuleSets": {
+      "type": "array",
+      "items": {
+        "description": "A design rule set of the project, including rule sets from an import. Rule sets for specific objects are not listed. Their effect is in the effective rules of each board.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "appliesTo": {
+            "description": "Selector of the objects that this rule set applies to.",
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "manufacturing-profile",
+              "manufacturer-capability",
+              "stackup",
+              "user",
+              "agent"
+            ]
+          },
+          "rules": {
+            "description": "Rule values as the project stores them, by rule name. Text values can include a unit.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "appliesTo",
+          "enabled",
+          "rules"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "schematic": {
+      "description": "Wires of the top-level schematic. Positions are schematic coordinates, not millimeters.",
+      "type": "object",
+      "properties": {
+        "wires": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "net": {
+                "type": "string"
+              },
+              "start": {
+                "description": "A point in millimeters.",
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              },
+              "end": {
+                "description": "A point in millimeters.",
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "start",
+              "end"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "connectedPins": {
+          "description": "Component pins that a wire connects to, at the wire end.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "string"
+              },
+              "pin": {
+                "type": "string"
+              },
+              "net": {
+                "type": "string"
+              },
+              "position": {
+                "description": "A point in millimeters.",
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "component",
+              "pin",
+              "position"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "wires",
+        "connectedPins"
+      ],
+      "additionalProperties": false
+    },
+    "assets": {
+      "description": "Files of the project and its parts, and the project documents.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "description": "Path of the file relative to project.json.",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "3d-model",
+              "image",
+              "footprint",
+              "symbol",
+              "board-shape",
+              "document",
+              "other"
+            ]
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "usedBy": {
+            "description": "Designators of the components that use this file. Empty for project files.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "included": {
+            "description": "False when the file is not in this download.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "path",
+          "name",
+          "kind",
+          "usedBy",
+          "included"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "format",
+    "schemaVersion",
+    "units",
+    "project",
+    "components",
+    "nets",
+    "bom",
+    "boards",
+    "designRuleSets",
+    "schematic",
+    "assets"
+  ],
+  "additionalProperties": false
+}
