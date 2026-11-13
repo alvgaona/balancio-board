@@ -1,6 +1,6 @@
 """Draw hw/balancio.kicad_pcb and its footprint library hw/lib/balancio.pretty from the Flux board.
 
-Usage: draw_pcb.py <KiCad netlist xml> <Flux Gerber zip>
+Usage: draw_pcb.py <KiCad netlist xml> <Flux Gerber zip>   (run by migrate.sh; overwrites hw/)
 
 The board was built and works, so this copies it: Flux's pads, traces, vias and copper pours, plus the
 front silkscreen from the Gerbers it was built from (minus Flux's title) and the back label from design.py.

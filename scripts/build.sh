@@ -1,16 +1,15 @@
 #!/bin/sh
-# Schematic and PCB from the Flux export, each checked against the board that was built:
-#   symbols -> schematic -> ERC -> KiCad netlist vs Flux netlist
-#   footprints -> PCB -> DRC with schematic parity -> KiCad Gerbers vs the Gerbers JLCPCB built from
+# Check and export the KiCad design. hw/ is the source: edit it in KiCad (scripts/migrate.sh is how it was
+# first generated from Flux). Steps: ERC -> netlist vs Flux -> DRC with schematic parity -> Gerbers and drill
+# -> compare with the Gerbers the working board was built from.
+# Rev 1.0 must match the built board exactly. When Rev 1.1 changes it on purpose, replace the two Flux
+# comparisons (check_netlist.py, check_gerbers.py) with checks of the intended change.
 set -e -o pipefail
 cd "$(dirname "$0")/.."
 K=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
 BUILT=alvgaona-balancio-board-Gerbers-Version89f23658_Y2.zip  # Flux's Gerbers for the first JLCPCB order
 quiet() { grep -v -E "wxApp|stdpbase|swig|Debug|Fontconfig|Plotted to|Created file|^Done" || true; }
 mkdir -p build
-python3 scripts/design.py
-python3 scripts/gen_lib.py
-python3 scripts/draw_sch.py
 $K sch erc --severity-all -o build/erc.rpt hw/balancio.kicad_sch 2>&1 | quiet
 # Known warnings: DRV8833 AISEN/BISEN tied straight to GND, as on the built board. Errors fail the build.
 ! grep -q '; error' build/erc.rpt || { cat build/erc.rpt; exit 1; }
@@ -18,7 +17,6 @@ $K sch export netlist --format kicadxml -o build/balancio.net.xml hw/balancio.ki
 python3 scripts/check_netlist.py build/balancio.net.xml
 $K sch export pdf -o build/balancio-schematic.pdf hw/balancio.kicad_sch 2>&1 | quiet
 
-python3 scripts/draw_pcb.py build/balancio.net.xml $BUILT
 $K pcb drc --schematic-parity --severity-all -o build/drc.rpt hw/balancio.kicad_pcb 2>&1 | quiet
 # Known warnings, all as built: silkscreen over pads and overlapping (JLCPCB clips silk off pads), and 7 track
 # stubs with a dangling end. Errors, unconnected items or schematic parity issues fail the build.
