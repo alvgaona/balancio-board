@@ -11,7 +11,7 @@
 		(title "Balancio board")
 		(date "2026-11-13")
 		(rev "1.1")
-		(comment 1 "Rev 1.0 copied from the built Flux board; Rev 1.1 changes in scripts/design.py; checked by scripts/build.sh")
+		(comment 1 "Rev 1.0 as built (migrated from Flux); Rev 1.1: soft-latch power switch. Checked by scripts/build.sh")
 	)
 	(layers
 		(0 "F.Cu" signal)
@@ -18156,7 +18156,7 @@
 			(uuid "3a7ed175-c118-5c55-bc8f-a71b01fa1a32")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/../flux/assets/ESP-WROOM32-6eb47d2f-f9fd-51d0-6081-4d9413e40023.STEP"
+		(model "${KIPRJMOD}/lib/balancio.3dshapes/ESP32-DEVKIT-V1.step"
 			(offset
 				(xyz -1.5 14.6 8)
 			)

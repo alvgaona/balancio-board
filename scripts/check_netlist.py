@@ -1,5 +1,5 @@
 """Fail unless KiCad's exported netlist connects exactly the pins design.nets() connects: the built board's
-Flux netlist with the Rev 1.1 changes (net names may differ)."""
+netlist with the Rev 1.1 changes (net names may differ)."""
 import sys
 import xml.etree.ElementTree as ET
 

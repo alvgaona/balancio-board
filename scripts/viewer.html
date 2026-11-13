@@ -31,7 +31,7 @@ try {
   const canvas = document.getElementById("view");
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  // Look copied from balancio-board/scripts/render_3d.py (JLCPCB black solder mask):
+  // Look of the earlier Blender render, scripts/render_3d.py in git history (JLCPCB black solder mask):
   //  - the mask is a neutral black, 88 % opaque, so copper shows through as a slightly lighter black;
   //  - copper is recoloured light grey first: orange copper under black mask reads brown;
   //  - the board core is dark, so only copper reads through the mask;

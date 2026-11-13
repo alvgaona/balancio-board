@@ -328,7 +328,7 @@
 		(layers "*.Cu" "*.Mask")
 		(uuid "04cbb006-96b3-515d-8bf1-e0d989dd294b"))
 	(model
-		"${KIPRJMOD}/../flux/assets/ESP-WROOM32-6eb47d2f-f9fd-51d0-6081-4d9413e40023.STEP"
+		"${KIPRJMOD}/lib/balancio.3dshapes/ESP32-DEVKIT-V1.step"
 		(offset (xyz -1.5 14.6 8))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 270 0 180))))

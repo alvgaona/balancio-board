@@ -1,13 +1,13 @@
 """Fail unless the KiCad board's Gerbers and drill match the ones the working board was built from, apart from
 the intended changes.
 
-Usage: check_gerbers.py <our gerber dir> <Flux Gerber zip> [png dir]
+Usage: check_gerbers.py <our gerber dir> <built Gerber zip> [png dir]
 
 Both sides are rasterized at 20 µm and XORed. Differences thinner than 2 pixels (40 µm, arc tessellation)
 are ignored. Silkscreen may also differ inside SILK_CHANGES, and every layer and hole inside REV11_CHANGES.
-Copper only fails where the built board has copper we don't: KiCad's pour fill adds slivers next to Flux's,
+Copper only fails where the built board has copper we don't: KiCad's pour fill adds slivers next to the built ones,
 and DRC checks those for clearance. Drill holes are compared as sets. With a png dir, every layer that
-differs gets an image (red = only ours, blue = only Flux).
+differs gets an image (red = only ours, blue = only built).
 """
 import math
 import re
@@ -21,7 +21,7 @@ from design import REV11_CHANGES, SILK_CHANGES
 RES = 0.02  # mm per pixel
 X0, Y0, N = -35.5, -35.5, 3550  # raster window: the 70 x 70 mm board plus a margin
 LAYERS = ["F_Cu", "B_Cu", "F_Mask", "B_Mask", "F_Paste", "B_Paste", "F_Silkscreen", "B_Silkscreen", "Edge_Cuts"]
-FLUX_NAMES = {"F_Silkscreen": "f_silks", "B_Silkscreen": "b_silks"}  # Flux files are named balancio-board-<layer>.gbr
+BUILT_NAMES = {"F_Silkscreen": "f_silks", "B_Silkscreen": "b_silks"}  # the zip (exported by Flux) names them balancio-board-<layer>.gbr
 
 
 def parse(text):
@@ -225,12 +225,12 @@ def drill(text):
     return holes
 
 
-def main(ours_dir, flux_zip, png_dir=None):
+def main(ours_dir, built_zip, png_dir=None):
     ours_dir = Path(ours_dir)
-    with zipfile.ZipFile(flux_zip) as z:
-        flux = {Path(n).name: n for n in z.namelist() if "/yg/balancio-board" in n}
-        read = lambda name: z.read(flux[name]).decode()
-        theirs = {L: read(f"balancio-board-{FLUX_NAMES.get(L, L.lower())}.gbr") for L in LAYERS}
+    with zipfile.ZipFile(built_zip) as z:
+        built = {Path(n).name: n for n in z.namelist() if "/yg/balancio-board" in n}
+        read = lambda name: z.read(built[name]).decode()
+        theirs = {L: read(f"balancio-board-{BUILT_NAMES.get(L, L.lower())}.gbr") for L in LAYERS}
         their_holes = drill(read("balancio-board.drl"))
     bad = 0
     for L in LAYERS:
@@ -253,7 +253,7 @@ def main(ours_dir, flux_zip, png_dir=None):
                                for q in pool)
     changed = lambda h: any(w[0] <= h[0] <= w[2] and w[1] <= h[1] <= w[3] for w in REV11_CHANGES)
     holes_bad = [("only ours", h) for h in our_holes if not near(h, their_holes) and not changed(h)] + \
-                [("only Flux", h) for h in their_holes if not near(h, our_holes) and not changed(h)]
+                [("only built", h) for h in their_holes if not near(h, our_holes) and not changed(h)]
     print(f"{'Drill':13} {'OK' if not holes_bad else 'DIFFERS'} ({len(our_holes)} holes)")
     for side, h in holes_bad[:10]:
         print("   ", side, h)

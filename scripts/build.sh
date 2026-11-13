@@ -1,12 +1,12 @@
 #!/bin/sh
 # Check and export the KiCad design. hw/ is the source: edit it in KiCad. Steps: ERC -> netlist vs design.py
-# (the built board's Flux netlist plus the Rev 1.1 changes) -> DRC with schematic parity -> Gerbers and drill
+# (the built board's netlist plus the Rev 1.1 changes) -> DRC with schematic parity -> Gerbers and drill
 # -> compare with the Gerbers the working board was built from (differences allowed only where Rev 1.1
 # changed it, design.REV11_CHANGES) -> JLCPCB BOM and pick-and-place for the SMD parts.
 set -e -o pipefail
 cd "$(dirname "$0")/.."
 K=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
-BUILT=alvgaona-balancio-board-Gerbers-Version89f23658_Y2.zip  # Flux's Gerbers for the first JLCPCB order
+BUILT=alvgaona-balancio-board-Gerbers-Version89f23658_Y2.zip  # the Gerbers of the first JLCPCB order (Rev 1.0, exported by Flux)
 quiet() { grep -v -E "wxApp|stdpbase|swig|Debug|Fontconfig|Plotted to|Created file|^Done|Loading|Writing" || true; }
 mkdir -p build
 $K sch erc --severity-all -o build/erc.rpt hw/balancio.kicad_sch 2>&1 | quiet
