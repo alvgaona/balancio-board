@@ -10,7 +10,6 @@ replaces the slide switch with a soft latch (power button on the left edge).
   - `balancio.kicad_sch`, `balancio.kicad_pcb`: schematic and board.
   - `lib/`: the board's own symbols, footprints and the 3D models KiCad doesn't ship (`balancio.3dshapes/`).
 - `scripts/build.sh`: checks the design and writes everything to `build/`.
-- `viewer/`: an interactive 3D view of the board, in the browser.
 
 ## Build
 
@@ -24,30 +23,15 @@ It writes:
 
 - `build/balancio-gerbers.zip`, `build/balancio-bom.csv` and `build/balancio-cpl.csv` for JLCPCB;
 - `build/balancio-schematic.pdf`;
-- `build/balancio.glb`, the assembled board in 3D for Blender or the viewer.
+- `build/balancio.glb`, the assembled board in 3D, for Blender;
+- `build/balancio-rev<rev>.zip`, the board package: all of the above plus the KiCad files, for descent.
 
-## 3D viewer
+## Viewing the board
 
-After a build, serve the repository and open the viewer:
+Open `build/balancio-rev<rev>.zip` in [descent](https://github.com/alvgaona/descent): the 3D model, schematic,
+PCB, BOM and every file, in the browser.
 
-```sh
-python3 -m http.server 8000
-```
+descent shows a part as metal when its colour is one of the metals of KiCad's standard 3D models, so our own
+models (the DevKit's `.FCStd`) paint metal with those: `#d2d1c7` (metal grey pins) and `#dbbc7e` (gold pins).
 
-Then open <http://localhost:8000/viewer/>.
-
-Controls:
-
-- Drag rotates, scroll zooms, right-drag pans.
-- Space starts or stops the spin.
-- Keys 1, 2 and 3 give the angled, top and bottom views. Key 4 shows the power button.
-- `?view=4` in the URL opens on a view.
-
-`viewer/board.json` holds the board-specific settings:
-
-- the model;
-- the pad finish;
-- which part colours are metal (KiCad's part models don't say);
-- the parts the number keys look at.
-
-For another board, copy `viewer/` and edit that file.
+`scripts/package.py` writes the package; its docstring describes the format.

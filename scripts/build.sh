@@ -103,8 +103,7 @@ convert_models() {
   done
 }
 
-# The assembled board in 3D, every part's model in one GLB: open it in Blender or in the viewer
-# (python3 -m http.server 8000, then http://localhost:8000/viewer/).
+# The assembled board in 3D, every part's model in one GLB, for Blender or descent.
 export_3d() {
   kicad pcb export glb -f --subst-models --include-tracks --include-pads --include-zones --include-silkscreen \
     --include-soldermask -o "$OUT/$BOARD.glb" "$PCB"
@@ -119,6 +118,11 @@ export_jlcpcb() {
   "$PYTHON" scripts/jlc.py "$OUT/bom-all.csv" "$OUT/pos-smd.csv" "$OUT"
 }
 
+# Everything above plus the KiCad sources, in one zip that descent (the board viewer) opens.
+package() {
+  "$PYTHON" scripts/package.py "$BOARD" "$OUT"
+}
+
 main() {
   mkdir -p "$OUT"
   check_erc
@@ -128,6 +132,7 @@ main() {
   convert_models
   export_3d
   export_jlcpcb
+  package
 }
 
 main "$@"
