@@ -1,8 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Check the KiCad design and export everything needed to order and view the board, into build/.
 #
 #   scripts/build.sh
 #
+# Runs on macOS and Linux. Tools are found on PATH or in their usual macOS install places;
+# set KICAD_CLI, FREECAD or PYTHON to point at one explicitly.
 # hw/ is the source: edit it in KiCad. Any ERC or DRC error stops the build before anything is exported.
 set -e -o pipefail
 cd "$(dirname "$0")/.."
@@ -11,7 +13,22 @@ BOARD=balancio
 SCH=hw/$BOARD.kicad_sch
 PCB=hw/$BOARD.kicad_pcb
 OUT=build
-KICAD_CLI=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
+
+# Print the first tool that exists: a bare name is looked up on PATH, a path must be executable.
+find_tool() {
+  for t in "$@"; do
+    case $t in
+      */*) if [ -x "$t" ]; then echo "$t"; return 0; fi ;;
+      *) if command -v "$t" 2>/dev/null; then return 0; fi ;;
+    esac
+  done
+  return 1
+}
+
+KICAD_CLI=${KICAD_CLI:-$(find_tool kicad-cli /Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli || true)}
+PYTHON=${PYTHON:-$(find_tool python3 || true)}
+[ -n "$KICAD_CLI" ] || { echo "kicad-cli not found: install KiCad or set KICAD_CLI"; exit 1; }
+[ -n "$PYTHON" ] || { echo "Python 3 not found: install it or set PYTHON"; exit 1; }
 
 # Drop kicad-cli's progress chatter; reports and real errors still show.
 quiet() {
@@ -57,17 +74,23 @@ export_gerbers() {
     --no-protel-ext --disable-aperture-macros -o "$OUT/gerbers/" "$PCB"
   kicad pcb export drill --format excellon --excellon-units mm -o "$OUT/gerbers/" "$PCB"
   rm -f "$OUT/$BOARD-gerbers.zip"
-  (cd "$OUT/gerbers" && zip -q "../$BOARD-gerbers.zip" "$BOARD"-*.gbr "$BOARD.drl")
+  (cd "$OUT/gerbers" && "$PYTHON" -m zipfile -c "../$BOARD-gerbers.zip" "$BOARD"-*.gbr "$BOARD.drl")
 }
 
 # Custom part models are edited in FreeCAD (hw/lib/balancio.3dshapes/*.FCStd); KiCad needs STEP.
 # Regenerate a STEP only when its .FCStd is newer: each export opens FreeCAD for a few seconds,
-# because FreeCAD keeps part colours in its GUI layer.
+# because FreeCAD keeps part colours in its GUI layer (on Linux without a display, via xvfb-run).
 convert_models() {
   for model in hw/lib/balancio.3dshapes/*.FCStd; do
     if [ "$model" -nt "${model%.FCStd}.step" ]; then
+      freecad=${FREECAD:-$(find_tool freecad FreeCAD /Applications/FreeCAD.app/Contents/MacOS/FreeCAD || true)}
+      [ -n "$freecad" ] || { echo "FreeCAD not found, needed to export $model: install it or set FREECAD"; exit 1; }
+      xvfb=""
+      if [ "$(uname)" = Linux ] && [ -z "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ] && command -v xvfb-run >/dev/null; then
+        xvfb="xvfb-run -a"
+      fi
       log=$(mktemp)
-      FCSTD="$PWD/$model" FCSTD_LOG="$log" "${FREECAD:-/Applications/FreeCAD.app/Contents/MacOS/FreeCAD}" \
+      FCSTD="$PWD/$model" FCSTD_LOG="$log" $xvfb "$freecad" \
         scripts/fcstd2step.py >/dev/null 2>&1 || true  # the log, not FreeCAD's exit code, says if it worked
       if ! grep -qx OK "$log"; then
         echo "FreeCAD could not export $model:"
@@ -93,7 +116,7 @@ export_jlcpcb() {
   kicad sch export bom --fields "Value,Reference,Footprint,LCSC" --labels "Comment,Designator,Footprint,LCSC Part #" \
     --group-by "Value,Footprint,LCSC" --ref-range-delimiter "" -o "$OUT/bom-all.csv" "$SCH"
   kicad pcb export pos --format csv --units mm --side front --smd-only -o "$OUT/pos-smd.csv" "$PCB"
-  python3 scripts/jlc.py "$OUT/bom-all.csv" "$OUT/pos-smd.csv" "$OUT"
+  "$PYTHON" scripts/jlc.py "$OUT/bom-all.csv" "$OUT/pos-smd.csv" "$OUT"
 }
 
 main() {
