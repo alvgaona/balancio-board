@@ -77,12 +77,23 @@ export_gerbers() {
   (cd "$OUT/gerbers" && "$PYTHON" -m zipfile -c "../$BOARD-gerbers.zip" "$BOARD"-*.gbr "$BOARD.drl")
 }
 
+# True when $1 changed after $2. A CI checkout gives every file the same arbitrary mtime, so CI compares
+# the commits that last touched them instead.
+newer() {
+  if [ -n "${CI:-}" ]; then
+    [ "$(git log -1 --format=%ct -- "$1")" -gt "$(git log -1 --format=%ct -- "$2")" ]
+  else
+    [ "$1" -nt "$2" ]
+  fi
+}
+
 # Custom part models are edited in FreeCAD (hw/lib/balancio.3dshapes/*.FCStd); KiCad needs STEP.
 # Regenerate a STEP only when its .FCStd is newer: each export opens FreeCAD for a few seconds,
 # because FreeCAD keeps part colours in its GUI layer (on Linux without a display, via xvfb-run).
+# CI has no FreeCAD, so a STEP older than its .FCStd fails there: export it locally and commit it.
 convert_models() {
   for model in hw/lib/balancio.3dshapes/*.FCStd; do
-    if [ "$model" -nt "${model%.FCStd}.step" ]; then
+    if newer "$model" "${model%.FCStd}.step"; then
       freecad=${FREECAD:-$(find_tool freecad FreeCAD /Applications/FreeCAD.app/Contents/MacOS/FreeCAD || true)}
       [ -n "$freecad" ] || { echo "FreeCAD not found, needed to export $model: install it or set FREECAD"; exit 1; }
       xvfb=""
