@@ -76,6 +76,7 @@ them with commitlint.
 Each board revision is tagged `rev-<rev>`, matching the `rev` in the schematic and PCB title blocks. Pushing the
 tag runs the release workflow: it checks the tag against the title blocks, builds the board, and publishes a
 GitHub release with the board package, Gerbers, BOM, CPL and schematic PDF. The notes come from git-cliff.
+To release a tag that already exists, run the release workflow by hand from the Actions tab and give it the tag.
 
 ```sh
 pixi run changelog   # write CHANGELOG.md from the commits
