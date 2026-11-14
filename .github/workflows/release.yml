@@ -1,0 +1,55 @@
+name: release
+
+on:
+  push:
+    tags: ["rev-[0-9]+.[0-9]+*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Same image as the build workflow: KiCad's full image ships the 3D models the GLB export needs.
+    container:
+      image: kicad/kicad:10.0.8-full
+      options: --user root
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # package.py names the commit with git describe, which needs the tags
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Verify tag matches the title block rev
+        run: |
+          rev="(rev \"${GITHUB_REF_NAME#rev-}\")"
+          grep -q "$rev" hw/balancio.kicad_sch && grep -q "$rev" hw/balancio.kicad_pcb
+      - run: scripts/build.sh
+      - uses: actions/upload-artifact@v7
+        with:
+          name: board
+          path: build/
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # for git-cliff
+      - uses: actions/download-artifact@v8
+        with:
+          name: board
+          path: build
+      - uses: prefix-dev/setup-pixi@v0.11.3
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rev=${GITHUB_REF_NAME#rev-}
+          pixi run git-cliff --current --strip header -o build/notes.md
+          cd build
+          for file in balancio-gerbers.zip balancio-bom.csv balancio-cpl.csv balancio-schematic.pdf; do
+            cp "$file" "${file%.*}-rev$rev.${file##*.}" # the rev goes in each file name
+          done
+          gh release create "$GITHUB_REF_NAME" --verify-tag --title "Rev $rev" --notes-file notes.md \
+            "balancio-rev$rev.zip" balancio-*-rev"$rev".*

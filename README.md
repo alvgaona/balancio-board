@@ -1,8 +1,27 @@
-# Balancio board
+<div align="center">
 
-Controller board for the Balancio self-balancing robot: an ESP32 DevKit, a DRV8833 motor driver, an MPU-6050
-IMU, 2S battery protection and a soft-latch power switch. Rev 1.0 was built by JLCPCB and works; Rev 1.1
-replaces the slide switch with a soft latch (power button on the left edge).
+# balancio-board
+
+**Controller board for the Balancio self-balancing robot.**
+
+[![Rev 1.1](https://img.shields.io/badge/rev-1.1-orange.svg)](hw/balancio.kicad_pcb)
+[![KiCad 10](https://img.shields.io/badge/KiCad-10-314cb0.svg)](https://www.kicad.org)
+[![Pixi](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json)](https://pixi.sh)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fe5196.svg)](https://www.conventionalcommits.org)
+
+</div>
+
+## Overview
+
+The board carries the robot's brains, motor drive and power.
+
+- ESP32 DevKit
+- DRV8833 dual motor driver
+- MPU-6050 IMU
+- 2S battery protection
+- Soft-latch power switch, with the power button on the left edge
+
+Rev 1.0 was built by JLCPCB and works. Rev 1.1 replaces its slide switch with the soft latch.
 
 ## Layout
 
@@ -13,11 +32,16 @@ replaces the slide switch with a soft latch (power button on the left edge).
 
 ## Build
 
+You need KiCad 10. FreeCAD is needed only after you edit a model in `hw/lib/balancio.3dshapes/`.
+
 ```sh
-scripts/build.sh
+scripts/build.sh   # or: pixi run build
 ```
 
 It runs ERC and DRC with schematic parity, and stops on any error before it exports anything.
+
+CI runs the same build in KiCad's Docker image on every push and pull request. The board package is attached to
+each run as the `board-package` artifact.
 
 It writes:
 
@@ -35,3 +59,24 @@ descent shows a part as metal when its colour is one of the metals of KiCad's st
 models (the DevKit's `.FCStd`) paint metal with those: `#d2d1c7` (metal grey pins) and `#dbbc7e` (gold pins).
 
 `scripts/package.py` writes the package; its docstring describes the format.
+
+## Development
+
+The dev tools (lefthook, commitlint, git-cliff) come from [pixi](https://pixi.sh). Install the git hook once:
+
+```sh
+pixi run hooks
+```
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org); the `commit-msg` hook checks
+them with commitlint.
+
+## Releases
+
+Each board revision is tagged `rev-<rev>`, matching the `rev` in the schematic and PCB title blocks. Pushing the
+tag runs the release workflow: it checks the tag against the title blocks, builds the board, and publishes a
+GitHub release with the board package, Gerbers, BOM, CPL and schematic PDF. The notes come from git-cliff.
+
+```sh
+pixi run changelog   # write CHANGELOG.md from the commits
+```
